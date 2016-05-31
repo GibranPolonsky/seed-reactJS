@@ -12,14 +12,12 @@ class Card extends React.Component{
   	componentDidMount(){
   		
 
-  		fetch('https://api.github.com/users/'+ this.props.user +'?access_token=51d910483cb7abafcb9922fbcee3b15bf0f3fac4')  
+  		fetch('https://api.github.com/users/'+ this.props.user +'?access_token=19939617338240620676c9ea34650765fb48a3f9')  
 	    .then((response) => {
 	        return response.json()
 	    })
 	    .then((recurso) => {
-
 	        this.setState({user: recurso});
-	       
 	    });
 
   	}
@@ -27,15 +25,15 @@ class Card extends React.Component{
   	render() {
   		if(this.state != null){
   			return (
-
 		    	<div className="card">
 				  <div className="card-block">
 
 				  	<img style={{float: 'right'}} width="100px" height="100px" src={this.state.user.avatar_url}/>
 				    <h4 className="card-title">{  this.state.user.name }</h4>
-				   
-				    <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-				    <a href="#" className="btn btn-primary">Go somewhere</a>
+
+				    <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora beatae, dolore fugiat, libero culpa doloremque perspiciatis sunt impedit officia natus nostrum aliquam architecto aspernatur, nulla fuga eaque reiciendis, nesciunt molestiae. </p>
+
+				    <a href={this.state.user.blog} className="btn btn-primary">Company</a>
 				  </div>
 				</div>
 	   		);

@@ -69,6 +69,10 @@
 	
 	var _Card2 = _interopRequireDefault(_Card);
 	
+	var _Login = __webpack_require__(/*! ./components/Login.jsx */ 171);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -115,7 +119,10 @@
 					_react2.default.createElement(_Result2.default, { localLikesCount: this.state.likesCount }),
 					_react2.default.createElement(_Card2.default, { user: 'CusProjects' }),
 					_react2.default.createElement(_Card2.default, { user: 'PerLiedman' }),
-					_react2.default.createElement(_Card2.default, { user: 'Google' })
+					_react2.default.createElement(_Card2.default, { user: 'Google' }),
+					_react2.default.createElement(_Card2.default, { user: 'Yahoo' }),
+					_react2.default.createElement(_Card2.default, { user: 'JoseGibran' }),
+					_react2.default.createElement(_Login2.default, null)
 				);
 			}
 		}]);
@@ -21035,7 +21042,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21053,72 +21060,168 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Card = function (_React$Component) {
-		_inherits(Card, _React$Component);
+	  _inherits(Card, _React$Component);
 	
-		function Card(props) {
-			_classCallCheck(this, Card);
+	  function Card(props) {
+	    _classCallCheck(this, Card);
 	
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Card).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Card).call(this, props));
 	
-			_this.props = props;
-			_this.componentDidMount = _this.componentDidMount.bind(_this);
-			return _this;
-		}
+	    _this.props = props;
+	    _this.componentDidMount = _this.componentDidMount.bind(_this);
+	    return _this;
+	  }
 	
-		_createClass(Card, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				var _this2 = this;
+	  _createClass(Card, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
 	
-				fetch('https://api.github.com/users/' + this.props.user + '?access_token=51d910483cb7abafcb9922fbcee3b15bf0f3fac4').then(function (response) {
-					return response.json();
-				}).then(function (recurso) {
+	      fetch('https://api.github.com/users/' + this.props.user + '?access_token=19939617338240620676c9ea34650765fb48a3f9').then(function (response) {
+	        return response.json();
+	      }).then(function (recurso) {
+	        _this2.setState({ user: recurso });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      if (this.state != null) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'card' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'card-block' },
+	            _react2.default.createElement('img', { style: { float: 'right' }, width: '100px', height: '100px', src: this.state.user.avatar_url }),
+	            _react2.default.createElement(
+	              'h4',
+	              { className: 'card-title' },
+	              this.state.user.name
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'card-text' },
+	              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora beatae, dolore fugiat, libero culpa doloremque perspiciatis sunt impedit officia natus nostrum aliquam architecto aspernatur, nulla fuga eaque reiciendis, nesciunt molestiae. '
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { href: this.state.user.blog, className: 'btn btn-primary' },
+	              'Company'
+	            )
+	          )
+	        );
+	      } else {
+	        return _react2.default.createElement(
+	          'p',
+	          null,
+	          'Loading...'
+	        );
+	      }
+	    }
+	  }]);
 	
-					_this2.setState({ user: recurso });
-				});
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				if (this.state != null) {
-					return _react2.default.createElement(
-						'div',
-						{ className: 'card' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'card-block' },
-							_react2.default.createElement('img', { style: { float: 'right' }, width: '100px', height: '100px', src: this.state.user.avatar_url }),
-							_react2.default.createElement(
-								'h4',
-								{ className: 'card-title' },
-								this.state.user.name
-							),
-							_react2.default.createElement(
-								'p',
-								{ className: 'card-text' },
-								'With supporting text below as a natural lead-in to additional content.'
-							),
-							_react2.default.createElement(
-								'a',
-								{ href: '#', className: 'btn btn-primary' },
-								'Go somewhere'
-							)
-						)
-					);
-				} else {
-					return _react2.default.createElement(
-						'p',
-						null,
-						'Loading...'
-					);
-				}
-			}
-		}]);
-	
-		return Card;
+	  return Card;
 	}(_react2.default.Component);
 	
 	exports.default = Card;
+
+/***/ },
+/* 171 */
+/*!*********************************************!*\
+  !*** ./src/client/app/components/Login.jsx ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Login = function (_React$Component) {
+		_inherits(Login, _React$Component);
+	
+		function Login(props) {
+			_classCallCheck(this, Login);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Login).call(this, props));
+		}
+	
+		_createClass(Login, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "login" },
+					_react2.default.createElement("link", { rel: "stylesheet", href: "assets/login-style.css" }),
+					_react2.default.createElement(
+						"a",
+						{ href: "#", "data-toggle": "modal", "data-target": "#login-modal" },
+						"Login"
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "modal fade", id: "login-modal", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel", "aria-hidden": "true" },
+						_react2.default.createElement(
+							"div",
+							{ className: "modal-dialog" },
+							_react2.default.createElement(
+								"div",
+								{ className: "loginmodal-container" },
+								_react2.default.createElement(
+									"h1",
+									null,
+									"Login to Your Account"
+								),
+								_react2.default.createElement("br", null),
+								_react2.default.createElement(
+									"form",
+									null,
+									_react2.default.createElement("input", { type: "text", name: "user", placeholder: "Username" }),
+									_react2.default.createElement("input", { type: "password", name: "pass", placeholder: "Password" }),
+									_react2.default.createElement("input", { type: "submit", name: "login", className: "login loginmodal-submit", value: "Login" })
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "login-help" },
+									_react2.default.createElement(
+										"a",
+										{ href: "#" },
+										"Register"
+									),
+									" - ",
+									_react2.default.createElement(
+										"a",
+										{ href: "#" },
+										"Forgot Password"
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return Login;
+	}(_react2.default.Component);
+	
+	exports.default = Login;
 
 /***/ }
 /******/ ]);

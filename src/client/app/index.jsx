@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import AwesomeComponent from './components/AwesomeComponent.jsx';
 import Result from './components/Result.jsx';
 import Card from './components/Card.jsx';
+import Login from './components/Login.jsx';
 
 class App extends React.Component {
 
@@ -32,6 +33,10 @@ class App extends React.Component {
 				<Card user="CusProjects"/>
 				<Card user="PerLiedman"/>
 				<Card user="Google"/>
+				<Card user="Yahoo"/>
+				<Card user="JoseGibran"/>
+
+				<Login/>
 			</div>
 		);
 	}
