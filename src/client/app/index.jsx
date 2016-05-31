@@ -5,6 +5,7 @@ import AwesomeComponent from './components/AwesomeComponent.jsx';
 import Result from './components/Result.jsx';
 import Card from './components/Card.jsx';
 import Login from './components/Login.jsx';
+import Register from './components/Register.jsx';
 
 class App extends React.Component {
 
@@ -37,6 +38,7 @@ class App extends React.Component {
 				<Card user="JoseGibran"/>
 
 				<Login/>
+				<Register/>	
 			</div>
 		);
 	}

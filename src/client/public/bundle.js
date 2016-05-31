@@ -73,6 +73,10 @@
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
+	var _Register = __webpack_require__(/*! ./components/Register.jsx */ 172);
+	
+	var _Register2 = _interopRequireDefault(_Register);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -122,7 +126,8 @@
 					_react2.default.createElement(_Card2.default, { user: 'Google' }),
 					_react2.default.createElement(_Card2.default, { user: 'Yahoo' }),
 					_react2.default.createElement(_Card2.default, { user: 'JoseGibran' }),
-					_react2.default.createElement(_Login2.default, null)
+					_react2.default.createElement(_Login2.default, null),
+					_react2.default.createElement(_Register2.default, null)
 				);
 			}
 		}]);
@@ -21222,6 +21227,134 @@
 	}(_react2.default.Component);
 	
 	exports.default = Login;
+
+/***/ },
+/* 172 */
+/*!************************************************!*\
+  !*** ./src/client/app/components/Register.jsx ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Register = function (_React$Component) {
+		_inherits(Register, _React$Component);
+	
+		function Register(props) {
+			_classCallCheck(this, Register);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Register).call(this, props));
+		}
+	
+		_createClass(Register, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "Register" },
+					_react2.default.createElement("link", { rel: "stylesheet", href: "assets/login-style.css" }),
+					_react2.default.createElement(
+						"a",
+						{ href: "#", "data-toggle": "modal", "data-target": "#register-modal" },
+						"Register"
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "modal fade", id: "register-modal", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel", "aria-hidden": "true" },
+						_react2.default.createElement(
+							"div",
+							{ className: "modal-dialog" },
+							_react2.default.createElement(
+								"div",
+								{ className: "loginmodal-container" },
+								_react2.default.createElement(
+									"h1",
+									null,
+									"Register"
+								),
+								_react2.default.createElement("br", null),
+								_react2.default.createElement(
+									"form",
+									null,
+									_react2.default.createElement("input", { type: "text", placeholder: "Company Name" }),
+									_react2.default.createElement("input", { type: "text", placeholder: "Contact Name" }),
+									_react2.default.createElement(
+										"select",
+										{ className: "form-control", pleaceholder: "Account Type" },
+										_react2.default.createElement(
+											"option",
+											null,
+											"Cliente"
+										),
+										_react2.default.createElement(
+											"option",
+											null,
+											"Freight"
+										)
+									),
+									_react2.default.createElement("input", { type: "text", placeholder: "Email" }),
+									_react2.default.createElement(
+										"select",
+										{ className: "form-control", pleaceholder: "Country" },
+										_react2.default.createElement(
+											"option",
+											null,
+											"Guatemala"
+										),
+										_react2.default.createElement(
+											"option",
+											null,
+											"USA"
+										)
+									),
+									_react2.default.createElement("input", { type: "text", placeholder: "Code area" }),
+									_react2.default.createElement("input", { type: "text", placeholder: "Phone" }),
+									_react2.default.createElement("input", { type: "submit", name: "login", className: "login loginmodal-submit", value: "Save" })
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "login-help" },
+									_react2.default.createElement(
+										"a",
+										{ href: "#" },
+										"Register"
+									),
+									" - ",
+									_react2.default.createElement(
+										"a",
+										{ href: "#" },
+										"Forgot Password"
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return Register;
+	}(_react2.default.Component);
+	
+	exports.default = Register;
 
 /***/ }
 /******/ ]);
