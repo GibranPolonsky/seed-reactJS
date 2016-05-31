@@ -57,13 +57,17 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 38);
 	
-	var _AwesomeComponent = __webpack_require__(/*! ./AwesomeComponent.jsx */ 168);
+	var _AwesomeComponent = __webpack_require__(/*! ./components/AwesomeComponent.jsx */ 168);
 	
 	var _AwesomeComponent2 = _interopRequireDefault(_AwesomeComponent);
 	
-	var _Result = __webpack_require__(/*! ./Result.jsx */ 169);
+	var _Result = __webpack_require__(/*! ./components/Result.jsx */ 169);
 	
 	var _Result2 = _interopRequireDefault(_Result);
+	
+	var _Card = __webpack_require__(/*! ./components/Card.jsx */ 170);
+	
+	var _Card2 = _interopRequireDefault(_Card);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -98,7 +102,7 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'col-md-12' },
 					_react2.default.createElement(
 						'p',
 						null,
@@ -108,7 +112,10 @@
 					_react2.default.createElement(_AwesomeComponent2.default, { localOnLike: this.onLike, increment: 10 }),
 					_react2.default.createElement(_AwesomeComponent2.default, { localOnLike: this.onLike, increment: 140 }),
 					_react2.default.createElement(_AwesomeComponent2.default, { localOnLike: this.onLike, increment: 1200 }),
-					_react2.default.createElement(_Result2.default, { localLikesCount: this.state.likesCount })
+					_react2.default.createElement(_Result2.default, { localLikesCount: this.state.likesCount }),
+					_react2.default.createElement(_Card2.default, { user: 'CusProjects' }),
+					_react2.default.createElement(_Card2.default, { user: 'PerLiedman' }),
+					_react2.default.createElement(_Card2.default, { user: 'Google' })
 				);
 			}
 		}]);
@@ -20889,9 +20896,9 @@
 
 /***/ },
 /* 168 */
-/*!*********************************************!*\
-  !*** ./src/client/app/AwesomeComponent.jsx ***!
-  \*********************************************/
+/*!********************************************************!*\
+  !*** ./src/client/app/components/AwesomeComponent.jsx ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20960,9 +20967,9 @@
 
 /***/ },
 /* 169 */
-/*!***********************************!*\
-  !*** ./src/client/app/Result.jsx ***!
-  \***********************************/
+/*!**********************************************!*\
+  !*** ./src/client/app/components/Result.jsx ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21017,6 +21024,101 @@
 	
 	exports.default = Result;
 	//HELLO :D
+
+/***/ },
+/* 170 */
+/*!********************************************!*\
+  !*** ./src/client/app/components/Card.jsx ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Card = function (_React$Component) {
+		_inherits(Card, _React$Component);
+	
+		function Card(props) {
+			_classCallCheck(this, Card);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Card).call(this, props));
+	
+			_this.props = props;
+			_this.componentDidMount = _this.componentDidMount.bind(_this);
+			return _this;
+		}
+	
+		_createClass(Card, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var _this2 = this;
+	
+				fetch('https://api.github.com/users/' + this.props.user + '?access_token=51d910483cb7abafcb9922fbcee3b15bf0f3fac4').then(function (response) {
+					return response.json();
+				}).then(function (recurso) {
+	
+					_this2.setState({ user: recurso });
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				if (this.state != null) {
+					return _react2.default.createElement(
+						'div',
+						{ className: 'card' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'card-block' },
+							_react2.default.createElement('img', { style: { float: 'right' }, width: '100px', height: '100px', src: this.state.user.avatar_url }),
+							_react2.default.createElement(
+								'h4',
+								{ className: 'card-title' },
+								this.state.user.name
+							),
+							_react2.default.createElement(
+								'p',
+								{ className: 'card-text' },
+								'With supporting text below as a natural lead-in to additional content.'
+							),
+							_react2.default.createElement(
+								'a',
+								{ href: '#', className: 'btn btn-primary' },
+								'Go somewhere'
+							)
+						)
+					);
+				} else {
+					return _react2.default.createElement(
+						'p',
+						null,
+						'Loading...'
+					);
+				}
+			}
+		}]);
+	
+		return Card;
+	}(_react2.default.Component);
+	
+	exports.default = Card;
 
 /***/ }
 /******/ ]);
