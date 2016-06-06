@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class Card extends React.Component{
 
 	constructor(props) {
@@ -11,8 +10,7 @@ class Card extends React.Component{
 
   	componentDidMount(){
   		
-
-  		fetch('https://api.github.com/users/'+ this.props.user +'?access_token=19939617338240620676c9ea34650765fb48a3f9')  
+  		fetch('https://api.github.com/users/'+ this.props.user +'?access_token=ed01bb3bcd30359758b1afd08af7cef369c12682')  
 	    .then((response) => {
 	        return response.json()
 	    })

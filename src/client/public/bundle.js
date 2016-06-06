@@ -77,6 +77,14 @@
 	
 	var _Register2 = _interopRequireDefault(_Register);
 	
+	var _Form = __webpack_require__(/*! ./components/Form.jsx */ 173);
+	
+	var _Form2 = _interopRequireDefault(_Form);
+	
+	var _Game = __webpack_require__(/*! ./components/Game.jsx */ 174);
+	
+	var _Game2 = _interopRequireDefault(_Game);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -93,8 +101,9 @@
 	
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 	
-			_this.state = { likesCount: 0 };
+			_this.state = { likesCount: 0, logins: [] };
 			_this.onLike = _this.onLike.bind(_this);
+			_this.addCard = _this.addCard.bind(_this);
 			return _this;
 		}
 	
@@ -103,31 +112,31 @@
 			value: function onLike(increment) {
 				var newLikesCount = this.state.likesCount + increment;
 				this.setState({ likesCount: newLikesCount });
-				console.log(newLikesCount);
+			}
+		}, {
+			key: 'addCard',
+			value: function addCard(userName) {
+				this.setState({ logins: this.state.logins.concat(userName) });
 			}
 		}, {
 			key: 'render',
 			value: function render() {
+				var cards = this.state.logins.map(function (n) {
+					return _react2.default.createElement(_Card2.default, { key: n, user: n });
+				});
 				return _react2.default.createElement(
 					'div',
 					{ className: 'col-md-12' },
 					_react2.default.createElement(
 						'p',
 						null,
-						' Hello WORLD I will love it!'
+						' I Love React Components'
 					),
 					_react2.default.createElement(_AwesomeComponent2.default, { localOnLike: this.onLike, increment: 1 }),
-					_react2.default.createElement(_AwesomeComponent2.default, { localOnLike: this.onLike, increment: 10 }),
-					_react2.default.createElement(_AwesomeComponent2.default, { localOnLike: this.onLike, increment: 140 }),
-					_react2.default.createElement(_AwesomeComponent2.default, { localOnLike: this.onLike, increment: 1200 }),
 					_react2.default.createElement(_Result2.default, { localLikesCount: this.state.likesCount }),
-					_react2.default.createElement(_Card2.default, { user: 'CusProjects' }),
-					_react2.default.createElement(_Card2.default, { user: 'PerLiedman' }),
-					_react2.default.createElement(_Card2.default, { user: 'Google' }),
-					_react2.default.createElement(_Card2.default, { user: 'Yahoo' }),
-					_react2.default.createElement(_Card2.default, { user: 'JoseGibran' }),
-					_react2.default.createElement(_Login2.default, null),
-					_react2.default.createElement(_Register2.default, null)
+					_react2.default.createElement(_Form2.default, { addCard: this.addCard }),
+					cards,
+					_react2.default.createElement(_Game2.default, null)
 				);
 			}
 		}]);
@@ -21082,7 +21091,7 @@
 	    value: function componentDidMount() {
 	      var _this2 = this;
 	
-	      fetch('https://api.github.com/users/' + this.props.user + '?access_token=19939617338240620676c9ea34650765fb48a3f9').then(function (response) {
+	      fetch('https://api.github.com/users/' + this.props.user + '?access_token=ed01bb3bcd30359758b1afd08af7cef369c12682').then(function (response) {
 	        return response.json();
 	      }).then(function (recurso) {
 	        _this2.setState({ user: recurso });
@@ -21173,47 +21182,47 @@
 				return _react2.default.createElement(
 					"div",
 					{ className: "login" },
-					_react2.default.createElement("link", { rel: "stylesheet", href: "assets/login-style.css" }),
 					_react2.default.createElement(
-						"a",
-						{ href: "#", "data-toggle": "modal", "data-target": "#login-modal" },
-						"Login"
+						"button",
+						{ type: "button", className: "btn btn-primary btn-lg", "data-toggle": "modal", "data-target": "#myModal" },
+						"Open Modal"
 					),
 					_react2.default.createElement(
 						"div",
-						{ className: "modal fade", id: "login-modal", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel", "aria-hidden": "true" },
+						{ id: "myModal", className: "modal fade", role: "dialog" },
 						_react2.default.createElement(
 							"div",
-							{ className: "modal-dialog" },
+							{ className: "modal-dialog login-content" },
 							_react2.default.createElement(
 								"div",
-								{ className: "loginmodal-container" },
-								_react2.default.createElement(
-									"h1",
-									null,
-									"Login to Your Account"
-								),
-								_react2.default.createElement("br", null),
-								_react2.default.createElement(
-									"form",
-									null,
-									_react2.default.createElement("input", { type: "text", name: "user", placeholder: "Username" }),
-									_react2.default.createElement("input", { type: "password", name: "pass", placeholder: "Password" }),
-									_react2.default.createElement("input", { type: "submit", name: "login", className: "login loginmodal-submit", value: "Login" })
-								),
+								{ className: "modal-content " },
 								_react2.default.createElement(
 									"div",
-									{ className: "login-help" },
+									{ className: "modal-body" },
+									_react2.default.createElement("img", { src: "./assets/aiolos.png", className: "login-logo" }),
 									_react2.default.createElement(
-										"a",
-										{ href: "#" },
-										"Register"
-									),
-									" - ",
-									_react2.default.createElement(
-										"a",
-										{ href: "#" },
-										"Forgot Password"
+										"form",
+										{ className: "form login-form", role: "form" },
+										_react2.default.createElement("input", { className: "form-control first-input", placeholder: "Name" }),
+										_react2.default.createElement("input", { className: "form-control", placeholder: "Mail" }),
+										_react2.default.createElement("input", { className: "form-control last-input", placeholder: "Password" }),
+										_react2.default.createElement(
+											"label",
+											{ className: "checkbox-label" },
+											" ",
+											_react2.default.createElement("input", { type: "checkbox", name: "checkbox", value: "value" }),
+											"I accept the ",
+											_react2.default.createElement(
+												"a",
+												{ href: "#" },
+												"Iolos terms"
+											)
+										),
+										_react2.default.createElement(
+											"button",
+											{ type: "submit", className: "btn btn-info btn-accent btn-block" },
+											" Sign In "
+										)
 									)
 								)
 							)
@@ -21355,6 +21364,527 @@
 	}(_react2.default.Component);
 	
 	exports.default = Register;
+
+/***/ },
+/* 173 */
+/*!********************************************!*\
+  !*** ./src/client/app/components/Form.jsx ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Form = function (_React$Component) {
+		_inherits(Form, _React$Component);
+	
+		function Form(props) {
+			_classCallCheck(this, Form);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Form).call(this, props));
+	
+			_this.props = props;
+			_this.handleSubmit = _this.handleSubmit.bind(_this);
+			return _this;
+		}
+	
+		_createClass(Form, [{
+			key: 'handleSubmit',
+			value: function handleSubmit(e) {
+				e.preventDefault();
+				var loginInput = _reactDom2.default.findDOMNode(this.refs.search);
+	
+				this.props.addCard(loginInput.value);
+	
+				loginInput.value = '';
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'form',
+					{ className: 'search', onSubmit: this.handleSubmit },
+					_react2.default.createElement(
+						'div',
+						{ className: 'form-group' },
+						_react2.default.createElement(
+							'label',
+							{ 'for': 'search', className: 'control-label' },
+							' Search '
+						),
+						_react2.default.createElement('input', { className: 'form-control', ref: 'search', pleaceholder: 'Search' })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'form-group' },
+						_react2.default.createElement('input', { type: 'submit', className: 'btn btn-success', value: 'Add' })
+					)
+				);
+			}
+		}]);
+	
+		return Form;
+	}(_react2.default.Component);
+	
+	exports.default = Form;
+
+/***/ },
+/* 174 */
+/*!********************************************!*\
+  !*** ./src/client/app/components/Game.jsx ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _StarsFrame = __webpack_require__(/*! ./StarsFrame.jsx */ 175);
+	
+	var _StarsFrame2 = _interopRequireDefault(_StarsFrame);
+	
+	var _ButtonFrame = __webpack_require__(/*! ./ButtonFrame.jsx */ 177);
+	
+	var _ButtonFrame2 = _interopRequireDefault(_ButtonFrame);
+	
+	var _AnswerFrame = __webpack_require__(/*! ./AnswerFrame.jsx */ 176);
+	
+	var _AnswerFrame2 = _interopRequireDefault(_AnswerFrame);
+	
+	var _NumbersFrame = __webpack_require__(/*! ./NumbersFrame.jsx */ 178);
+	
+	var _NumbersFrame2 = _interopRequireDefault(_NumbersFrame);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Game = function (_React$Component) {
+		_inherits(Game, _React$Component);
+	
+		function Game(props) {
+			_classCallCheck(this, Game);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Game).call(this, props));
+	
+			_this.componentDidMount = _this.componentDidMount.bind(_this);
+			_this.selectNumber = _this.selectNumber.bind(_this);
+			_this.unselectNumber = _this.unselectNumber.bind(_this);
+			_this.useAttemp = _this.useAttemp.bind(_this);
+			_this.checkResult = _this.checkResult.bind(_this);
+			return _this;
+		}
+	
+		_createClass(Game, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.setState({ gameState: 'inProgress', correctNumbers: [], selectedNumbers: [], numberOfStars: Math.floor(Math.random() * 9) + 1, attemps: 5 });
+			}
+		}, {
+			key: 'selectNumber',
+			value: function selectNumber(Number) {
+				if (this.state.selectedNumbers.indexOf(Number) < 0 && this.state.correctNumbers.indexOf(Number) < 0) {
+					this.setState({ selectedNumbers: this.state.selectedNumbers.concat(Number) });
+				}
+			}
+		}, {
+			key: 'unselectNumber',
+			value: function unselectNumber(Number) {
+				var index = this.state.selectedNumbers.indexOf(Number);
+				this.state.selectedNumbers.splice(index, 1);
+				this.setState({ selectedNumbers: this.state.selectedNumbers });
+			}
+		}, {
+			key: 'useAttemp',
+			value: function useAttemp() {
+				if (this.state.attemps > 0) {
+	
+					this.setState({ numberOfStars: Math.floor(Math.random() * 9) + 1 });
+				} else {
+					this.state.gameState = 'over';
+					this.setState({ 'gameState': this.state.gameState });
+				}
+			}
+		}, {
+			key: 'checkResult',
+			value: function checkResult() {
+				var total = 0;
+				this.state.selectedNumbers.forEach(function (number) {
+					return total += number;
+				});
+				if (total == this.state.numberOfStars) {
+					this.state.correctNumbers = this.state.correctNumbers.concat(this.state.selectedNumbers);
+					this.setState({ 'correctNumbers': this.state.correctNumbers, 'selectedNumbers': [], numberOfStars: Math.floor(Math.random() * 9) + 1 });
+	
+					console.log(this.state.correctNumbers.length);
+					if (this.state.correctNumbers.length == 9) {
+						this.state.gameState = 'win';
+						this.setState({ 'gameState': this.state.gameState });
+					}
+				} else {
+					alert("K berguenza prro :'v");
+				}
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				if (this.state != null) {
+					return _react2.default.createElement(
+						'div',
+						{ id: 'game' },
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Play Nine'
+						),
+						_react2.default.createElement('hr', null),
+						_react2.default.createElement(
+							'div',
+							{ className: 'clearfix' },
+							_react2.default.createElement(_StarsFrame2.default, { numberOfStars: this.state.numberOfStars }),
+							_react2.default.createElement(_ButtonFrame2.default, { checkResult: this.checkResult, attemps: this.state.attemps, useAttemp: this.useAttemp }),
+							_react2.default.createElement(_AnswerFrame2.default, { selectedNumbers: this.state.selectedNumbers, clickNumber: this.unselectNumber }),
+							_react2.default.createElement(_NumbersFrame2.default, { correctNumbers: this.state.correctNumbers, selectedNumbers: this.state.selectedNumbers, clickNumber: this.selectNumber }),
+							this.state.gameState == 'over' ? _react2.default.createElement(
+								'div',
+								{ className: 'alert alert-danger' },
+								'Game Over'
+							) : null,
+							this.state.gameState == 'win' ? _react2.default.createElement(
+								'div',
+								{ className: 'alert alert-success' },
+								'Congratulations you win'
+							) : null
+						)
+					);
+				} else {
+					return _react2.default.createElement(
+						'p',
+						null,
+						' Loading... '
+					);
+				}
+			}
+		}]);
+	
+		return Game;
+	}(_react2.default.Component);
+	
+	exports.default = Game;
+
+/***/ },
+/* 175 */
+/*!**************************************************!*\
+  !*** ./src/client/app/components/StarsFrame.jsx ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var StarsFrame = function (_React$Component) {
+		_inherits(StarsFrame, _React$Component);
+	
+		function StarsFrame(props) {
+			_classCallCheck(this, StarsFrame);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(StarsFrame).call(this, props));
+		}
+	
+		_createClass(StarsFrame, [{
+			key: "render",
+			value: function render() {
+	
+				var stars = [];
+	
+				for (var i = 0; i < this.props.numberOfStars; i++) {
+					stars.push(_react2.default.createElement("span", { key: i, className: "glyphicon glyphicon-star" }));
+				}
+	
+				return _react2.default.createElement(
+					"div",
+					{ id: "stars-frame" },
+					_react2.default.createElement(
+						"div",
+						{ className: "well" },
+						stars
+					)
+				);
+			}
+		}]);
+	
+		return StarsFrame;
+	}(_react2.default.Component);
+	
+	exports.default = StarsFrame;
+
+/***/ },
+/* 176 */
+/*!***************************************************!*\
+  !*** ./src/client/app/components/AnswerFrame.jsx ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AnswerFrame = function (_React$Component) {
+		_inherits(AnswerFrame, _React$Component);
+	
+		function AnswerFrame(props) {
+			_classCallCheck(this, AnswerFrame);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AnswerFrame).call(this, props));
+	
+			_this.props = props;
+			return _this;
+		}
+	
+		_createClass(AnswerFrame, [{
+			key: "render",
+			value: function render() {
+				var _this2 = this;
+	
+				var numbers = [];
+	
+				this.props.selectedNumbers.forEach(function (number) {
+					return numbers.push(_react2.default.createElement(
+						"span",
+						{ onClick: _this2.props.clickNumber.bind(null, number), key: number },
+						number
+					));
+				});
+	
+				return _react2.default.createElement(
+					"div",
+					{ id: "answer-frame" },
+					_react2.default.createElement(
+						"div",
+						{ className: "well" },
+						numbers
+					)
+				);
+			}
+		}]);
+	
+		return AnswerFrame;
+	}(_react2.default.Component);
+	
+	exports.default = AnswerFrame;
+
+/***/ },
+/* 177 */
+/*!***************************************************!*\
+  !*** ./src/client/app/components/ButtonFrame.jsx ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ButtonFrame = function (_React$Component) {
+		_inherits(ButtonFrame, _React$Component);
+	
+		function ButtonFrame(props) {
+			_classCallCheck(this, ButtonFrame);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ButtonFrame).call(this, props));
+		}
+	
+		_createClass(ButtonFrame, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ id: "button-frame" },
+					_react2.default.createElement(
+						"button",
+						{ onClick: this.props.checkResult, className: "btn btn-primary btn-lg", sty: true },
+						"="
+					),
+					_react2.default.createElement("br", null),
+					_react2.default.createElement("br", null),
+					_react2.default.createElement(
+						"button",
+						{ onClick: this.props.useAttemp, type: "button", className: "btn btn-warning" },
+						_react2.default.createElement(
+							"i",
+							{ className: "glyphicon glyphicon-refresh" },
+							"  " + this.props.attemps
+						)
+					)
+				);
+			}
+		}]);
+	
+		return ButtonFrame;
+	}(_react2.default.Component);
+	
+	exports.default = ButtonFrame;
+
+/***/ },
+/* 178 */
+/*!****************************************************!*\
+  !*** ./src/client/app/components/NumbersFrame.jsx ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NumbersFrame = function (_React$Component) {
+		_inherits(NumbersFrame, _React$Component);
+	
+		function NumbersFrame(props) {
+			_classCallCheck(this, NumbersFrame);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NumbersFrame).call(this, props));
+	
+			_this.clickNumber = _this.clickNumber.bind(_this);
+			return _this;
+		}
+	
+		_createClass(NumbersFrame, [{
+			key: "clickNumber",
+			value: function clickNumber(number) {
+				this.props.clickNumber(number);
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				var numbers = [],
+				    className = void 0,
+				    selectedNumbers = this.props.selectedNumbers,
+				    correctNumbers = this.props.correctNumbers;
+				for (var i = 1; i < 10; i++) {
+	
+					className = "number selected-" + (selectedNumbers.indexOf(i) >= 0);
+					className = correctNumbers.indexOf(i) >= 0 ? "number correct" : className;
+	
+					numbers.push(_react2.default.createElement(
+						"div",
+						{ className: className, onClick: this.props.clickNumber.bind(null, i), key: i },
+						i
+					));
+				}
+	
+				return _react2.default.createElement(
+					"div",
+					{ id: "numbers-frame" },
+					_react2.default.createElement(
+						"div",
+						{ className: "well" },
+						numbers
+					)
+				);
+			}
+		}]);
+	
+		return NumbersFrame;
+	}(_react2.default.Component);
+	
+	exports.default = NumbersFrame;
 
 /***/ }
 /******/ ]);

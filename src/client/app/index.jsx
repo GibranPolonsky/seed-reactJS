@@ -7,38 +7,44 @@ import Card from './components/Card.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 
+import Form from './components/Form.jsx';
+
+import Game from './components/Game.jsx'
+
 class App extends React.Component {
 
 
 	constructor(props) {
 		super(props);
-		this.state = {likesCount : 0};
+		this.state = {likesCount : 0, logins: []};
 		this.onLike = this.onLike.bind(this);
+		this.addCard = this.addCard.bind(this);
 	}
 
 	onLike (increment) {
 	    let newLikesCount = this.state.likesCount + increment;
 	    this.setState({likesCount: newLikesCount});
-	    console.log(newLikesCount);
+  	}
+
+  	addCard (userName){
+  		this.setState({logins: this.state.logins.concat(userName)});
   	}
 
 	render () {
+		let cards = this.state.logins.map(n => (<Card key={n} user={n} />));
 		return (
 			<div className="col-md-12">
-				<p> Hello WORLD I will love it!</p>
+				<p> I Love React Components</p>
 				<AwesomeComponent localOnLike={this.onLike} increment={1}/>
-				<AwesomeComponent localOnLike={this.onLike} increment={10}/>
-				<AwesomeComponent localOnLike={this.onLike} increment={140}/>
-				<AwesomeComponent localOnLike={this.onLike} increment={1200}/>
 				<Result localLikesCount={this.state.likesCount}/>
-				<Card user="CusProjects"/>
-				<Card user="PerLiedman"/>
-				<Card user="Google"/>
-				<Card user="Yahoo"/>
-				<Card user="JoseGibran"/>
+				
+				<Form addCard={this.addCard}/>
 
-				<Login/>
-				<Register/>	
+				{ cards }
+
+				<Game />
+
+
 			</div>
 		);
 	}

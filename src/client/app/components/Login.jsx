@@ -10,27 +10,33 @@ class Login extends React.Component {
 		return(
 			<div className="login"> 
 
-				<link rel="stylesheet"  href="assets/login-style.css"/>
 
-				<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+				<button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+		
+				<div id="myModal" className="modal fade" role="dialog">
+				  <div className="modal-dialog login-content">
 
-				<div className="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					 <div className="modal-dialog">
-						<div className="loginmodal-container">
-							<h1>Login to Your Account</h1><br/>
+				    <div className="modal-content ">
+				    
+				      <div className="modal-body">
+				        <img src="./assets/aiolos.png" className="login-logo"/>
 
-							 <form>
-								<input type="text" name="user" placeholder="Username"/>
-								<input type="password" name="pass" placeholder="Password"/>
-								<input type="submit" name="login" className="login loginmodal-submit" value="Login"/>
-							  </form>
+				         <form className="form login-form" role="form">
+					      	<input className="form-control first-input" placeholder="Name"/>
+					      	<input className="form-control" placeholder="Mail"/>
+					      	<input className="form-control last-input" placeholder="Password"/>
+					     
+					      	<label className="checkbox-label"> <input type="checkbox" name="checkbox" value="value"/>I accept the <a href="#">Iolos terms</a></label>
+					      	<button type="submit" className="btn btn-info btn-accent btn-block"> Sign In </button>
+				      	</form>
 
-							<div className="login-help">
-								<a href="#">Register</a> - <a href="#">Forgot Password</a>
-							</div>
+				      </div>
 
-						</div>
-					</div>
+				     
+				     
+				    </div>
+
+				  </div>
 				</div>
 
 
